@@ -9,6 +9,12 @@ import './assets/fonts/iconfont.css'
 
 import axios from 'axios'
 axios.defaults.baseURL = 'http://shopcms.wuster.vip/api/private/v1/'
+axios.interceptors.request.use(config =>{
+  //console.log(config)
+  config.headers.Authorization = window.sessionStorage.getItem('token')
+  //在最后必须return config
+  return config
+})
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
