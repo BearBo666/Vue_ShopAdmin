@@ -19,7 +19,7 @@
                    </el-input>
                </el-col>
                <el-col :span="4">
-                   <el-button type="primary" @click="addDialogVisible=true">添加用户</el-button>
+                   <el-button type="primary" @click="addUser">添加用户</el-button>
                </el-col>
            </el-row>
 
@@ -97,7 +97,7 @@
         width="50%" @close="editDialogClosed">
             <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="70px">
                 <el-form-item label="用户名">
-                    <el-input v-model="editForm.username" disabled></el-input>
+                    <el-input v-model="editForm.username"></el-input>
                 </el-form-item>
                 <el-form-item label="邮箱" prop="email">
                     <el-input v-model="editForm.email"></el-input>
@@ -272,6 +272,7 @@ export default {
         this.getUserList()
     },
     methods: {
+        //获取用户列表
         async getUserList(){
             const { data:res } = await this.$http.get('users',{ 
                 params: this.queryInfo 
@@ -279,7 +280,7 @@ export default {
             if(res.meta.status !== 200) return this.$message.error('获取用户列表失败')
             this.userlist = res.data.users
             this.total = res.data.total
-            console.log(res)
+            //console.log(res)
         },
         // 监听每页显示条数改变的事件
         handleSizeChange(newSize){
@@ -288,8 +289,8 @@ export default {
         },
         // 监听页码值改变的事件
         handleCurrentChange(newPage){
-            console.log(newPage)
             this.queryInfo.pagenum=newPage
+            this.getUserList()
         },
         async userStateChanged(userinfo){
             console.log(userinfo)
@@ -307,7 +308,7 @@ export default {
         //点击按钮添加新用户
         addUser(){
             this.$refs.addFormRef.validate(async valid=>{
-                if(!validate) return
+                if(!valid) return
                 // 可以发起添加用户的网络请求
                 const {data:res} = await this.$http.post('users',this.addForm)
                 if(res.meta.status !== 201){
