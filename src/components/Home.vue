@@ -6,7 +6,7 @@
                 <img class="bear" src="../assets/bear1.png" alt="">
                 <span>电商后台管理系统</span>
             </div>
-            <el-button type="info" @click="logout">退出</el-button>
+            <el-button type="info" @click="logout" class="logoutBtn">退出</el-button>
         </el-header>
         <!-- 页面主体区域 -->
         <el-container>
@@ -119,8 +119,15 @@ export default {
     }
 }
 .bear{
-    height: 60px;
+    height: 50px;
     width: 60px;
+    
+    margin-bottom: 3px;
+    margin-left: 10px;
+}
+.logoutBtn{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .el-aside{
     background-color: #333744;

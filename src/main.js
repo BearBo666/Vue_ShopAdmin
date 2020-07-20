@@ -6,7 +6,7 @@ import './plugins/element.js'
 import './assets/css/global.css'
 //导入全局样式表
 import './assets/fonts/iconfont.css'
-//
+//导入树状依赖
 import TreeTable from 'vue-table-with-tree-grid'
 
 import axios from 'axios'

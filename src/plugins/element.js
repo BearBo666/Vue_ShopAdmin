@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import { MessageBox,Tag,Tree,Select,Option,Cascader} from 'element-ui'
-import { Form, FormItem,Card,Row,Col,Table,TableColumn } from 'element-ui'
+import { MessageBox,Tag,Tree,Select,Option,Cascader,Alert} from 'element-ui'
+import { Form, FormItem,Card,Row,Col,Table,TableColumn,Tabs,TabPane } from 'element-ui'
 import { Input,Container,Header,Aside,Main,Switch,Tooltip } from 'element-ui'
 import { Message,Menu,Submenu,MenuItemGroup,MenuItem,Dialog,Button,Breadcrumb,BreadcrumbItem,Pagination } from 'element-ui'
 
@@ -32,5 +32,8 @@ Vue.use(Tree)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(Cascader)
+Vue.use(Alert)
+Vue.use(Tabs)
+Vue.use(TabPane)
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
