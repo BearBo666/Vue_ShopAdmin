@@ -106,7 +106,6 @@ export default {
             }
 
             this.rolelist=res.data
-            //console.log(this.rolelist)
         },
         async removeRightById(role,rightId){
             // 弹框提示用户是否要删除
@@ -136,7 +135,6 @@ export default {
             }
             //获取到的权限数据保存到data中
             this.rightslist=res.data
-            //console.log(this.rightslist)
             //递归获取三级节点的id
             this.getLeafKeys(role,this.defKeys)
             this.setRightDialogVisible=true

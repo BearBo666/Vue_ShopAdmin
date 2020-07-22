@@ -162,7 +162,6 @@ export default {
         },
         //级联选择器选中项发生变化时,会触发这个函数
         handleChange(){
-            console.log(this.addForm.goods_cat)
         },
         //监听添加商品步骤转换的函数
         beforeTabLeave(activeName,oldActiveName){
@@ -188,7 +187,6 @@ export default {
                     item.attr_vals.length==0?
                     []:item.attr_vals.split(' ')
                 })
-                console.log(res.data)
                 this.manyTableData=res.data
             }else if(this.activeIndex == '2'){ //证明访问静态属性面板
                 const {data:res} = await this.$http.get(`categories/${this.cateId}/attributes`,
@@ -216,7 +214,6 @@ export default {
             x.pic==filePath)
             //3.调用数组的splice方法,把图片信息对象,从pics数组中移除
             this.addForm.pics.splice(i,1)
-            console.log(this.addForm)
         },
         //监听图片上传成功的事件
         handleSuccess(response){

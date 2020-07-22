@@ -139,7 +139,6 @@ export default {
             }
             this.total=res.data.total
             this.orderList=res.data.goods
-            console.log(this.orderList)
         },
         //检测分页变化的两个函数
         handleSizeChange(newSize){
@@ -166,7 +165,6 @@ export default {
                 return this.$message.error('获取物流进度失败!')
             }
             this.progressInfo=res.data
-            console.log(this.progressInfo)
             this.progressVisible=true
         }
     }

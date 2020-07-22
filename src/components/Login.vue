@@ -51,17 +51,15 @@ export default {
     methods: {
         //点重置按钮，重置登录菜单
         reseLoginForm(){
-            //console.log(this)
             this.$refs.loginFormRef.resetFields();
         },
         //登录
         login(){
             this.$refs.loginFormRef.validate(async valid=>{
-               //console.log(valid);
                if(!valid) return;
                const { data:res } = await this.$http.post('login',this.loginForm);
                if(res.meta.status !== 200) return this.$message.error('登录失败');
-               this.$message.success('登录成功');
+               this.$message.success('欢迎使用小熊的电商管理系统!');
                window.sessionStorage.setItem("token", res.data.token)
                this.$router.push('/home');
             })

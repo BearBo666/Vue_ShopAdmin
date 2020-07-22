@@ -19,7 +19,7 @@
                    </el-input>
                </el-col>
                <el-col :span="4">
-                   <el-button type="primary" @click="addUser">添加用户</el-button>
+                   <el-button type="primary" @click="addDialogVisible =true">添加用户</el-button>
                </el-col>
            </el-row>
 
@@ -97,7 +97,7 @@
         width="50%" @close="editDialogClosed">
             <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="70px">
                 <el-form-item label="用户名">
-                    <el-input v-model="editForm.username"></el-input>
+                    <el-input v-model="editForm.username" :disabled="true"></el-input>
                 </el-form-item>
                 <el-form-item label="邮箱" prop="email">
                     <el-input v-model="editForm.email"></el-input>
@@ -113,7 +113,7 @@
             </span>
         </el-dialog>
 
-        <!-- 分配用户的对话框 -->
+        <!-- 分配角色的对话框 -->
         <el-dialog title="分配角色" :visible.sync="setRoleDialogVisible" width="50%" @close="setRoleDialogClosed">
             <div>
                 <p>当前的用户:{{userInfo.username}}</p>
@@ -280,7 +280,6 @@ export default {
             if(res.meta.status !== 200) return this.$message.error('获取用户列表失败')
             this.userlist = res.data.users
             this.total = res.data.total
-            //console.log(res)
         },
         // 监听每页显示条数改变的事件
         handleSizeChange(newSize){
@@ -339,14 +338,14 @@ export default {
             this.$refs.editFormRef.validate(async valid=>{
                 if(!valid) return
                 //发起修改用户信息的请求
-                const {data:res} = await this.$http.put('users/'+this.editForm.id,{
+                const {data:res} = await this.$http.put('users/' + this.editForm.id,{
                     email:this.editForm.email,
                     mobile:this.editForm.mobile
                 })
                 if(res.meta.status !== 200){
                     return this.$message.error('更新用户信息失败!')
                 }
-
+                console.log(res.meta.status)
                 //关闭对话框
                 this.editDialogVisible=false
                 //刷新数据列表
@@ -373,6 +372,7 @@ export default {
             if(res.meta.status !== 200){
                 return this.$message.error('删除用户失败!')
             }
+            this.getUserList()
             this.$message.success('已成功删除!')
         },
         //展示分配角色的对话框
@@ -407,7 +407,3 @@ export default {
     }
 }
 </script>
-
-<style lang="less" scoped>
-
-</style>
